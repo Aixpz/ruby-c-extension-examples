@@ -74,19 +74,11 @@ enum PolyFillType { pftEvenOdd, pftNonZero, pftPositive, pftNegative };
   static cInt const loRange = 0x7FFF;
   static cInt const hiRange = 0x7FFF;
 #else
-  // Prevent conflict with _INTEGRAL_MAX_BITS macro
-  #ifdef _INTEGRAL_MAX_BITS
-    #pragma push_macro("_INTEGRAL_MAX_BITS")
-    #undef _INTEGRAL_MAX_BITS
-  #endif
   typedef signed long long cInt;
   static cInt const loRange = 0x3FFFFFFF;
   static cInt const hiRange = 0x3FFFFFFFFFFFFFFFLL;
   typedef signed long long long64;     //used by Int128 class
   typedef unsigned long long ulong64;
-  #ifdef _INTEGRAL_MAX_BITS
-    #pragma pop_macro("_INTEGRAL_MAX_BITS")
-  #endif
 
 #endif
 
