@@ -102,8 +102,7 @@ sym_to_jointype(VALUE sym)
   rb_raise(rb_eArgError, "%s", "Expected :jtSquare, :jtMiter or :jtRound");
 }
 
-extern "C" {
-
+// Helper functions that use C++ types - must be outside extern "C"
 static inline IntPoint
 xy_to_intpoint(VALUE px, VALUE py, double multiplier) {
   return IntPoint((long64)(NUM2DBL(px) * multiplier), (long64)(NUM2DBL(py) * multiplier));
@@ -143,6 +142,8 @@ arys_to_polygons(VALUE polygonsValue, ClipperLib::Paths* polygons, const double 
     polygons->push_back(tmp);
   }
 }
+
+extern "C" {
 
 static void
 rbclipper_free(void* ptr)
